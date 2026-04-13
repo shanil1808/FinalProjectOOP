@@ -8,34 +8,40 @@ namespace FinalProject
 {
     public abstract class Entity
     {
-        private int id;
-        private string name;
-        DateTime createdDate;
+        protected int id;
+        protected string name;
+        protected DateTime createdDate;
 
-        public Entity(int id, string name, DateTime createdDate)
+        //Constructor to initialize the entity's properties
+        public Entity(int id, string name, DateTime createdDate) 
         {
             this.id = id;
             this.name = name;
             this.createdDate = createdDate;
         }
-        public int GetId() { return id; }
 
-        public string GetName() { return name; }
+        //Getters and setters for the entity's properties
+        public int GetId() { return id; } 
 
-        public DateTime GetCreatedDate() { return createdDate; }
+        public string GetName() { return name; } 
 
-        public void SetName(string name)
+        public DateTime GetCreatedDate() { return createdDate; } 
+
+        public void SetId(int id) { this.id = id; }
+
+        public void SetName(string name) 
         {
-            if (name == null) throw new ArgumentNullException("name"); 
+            if (name == null) throw new Exception("name"); // Ensure that the name is not null
             this.name = name;
         }
 
         public void SetCreatedDate(DateTime dateTime) 
         { 
-            this.createdDate = dateTime; 
+            this.createdDate = dateTime; //sets the date and time when the entity was created
         }
 
-        public virtual bool Validate()
+        // Validates the entity's properties
+        public virtual bool Validate() 
         {
             if (name == null)
             {
@@ -46,6 +52,7 @@ namespace FinalProject
                 return true;
             }
         }
-        public abstract void Display();
+        // Abstract method to display the entity's information, to be implemented by derived classes
+        public abstract void Display(); 
     }
 }
